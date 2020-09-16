@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Customer;
 import com.example.demo.service.CustomerService;
 
-@RestController
+@Controller
+@RequestMapping(value = "/api")
 public class CustomerCotroller {
 	
 	@Autowired
@@ -66,52 +69,51 @@ public class CustomerCotroller {
 	}
 	*/
 	@GetMapping("/start")
-	public String showSignUpForm(Customer employee) {
-		return "add-employee";
+	public String showSignUpForm(Customer customer) {
+		return "addcustomer2";
 	}
 
 	@GetMapping("/list")
 	public String showUpdateForm(Model model) {
-		model.addAttribute("employees", customerService.getAllCustomer());
+		model.addAttribute("customers", customerService.getAllCustomer());
 		return "index";
 	}
 
 	@PostMapping("/add")
-	public String addEmployee( Customer employee, BindingResult result, Model model) {
+	public String addCustomer(Customer customer, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "add-employee";
+			return "addcustomer2";
 		}
-		customerService.addCustomer(employee);
-		;
+		customerService.addCustomer(customer);
+		
 		return "redirect:list";
 	}
 
-	@GetMapping("/employee/{empId}")
-	public String getEmployee(@PathVariable("empId") Integer empId, Model model) {
-		Optional<Customer> emp = customerService.getCustomer(empId);
-		Customer employee = emp.get();
-		model.addAttribute("employee", employee);
-		return "update-employee";
+	@GetMapping("/customer/{custId}")
+	public String getCustomer(@PathVariable("custId") Integer custId, Model model) {
+		Optional<Customer> cust = customerService.getCustomer(custId);
+		Customer customer = cust.get();
+		model.addAttribute("customers", customer);
+		return "update_customer";
 
 	}
 
-	@GetMapping("delete/{empId}")
-	public String removeEmployee(@PathVariable("empId") Integer empId, Model model) {
+	@GetMapping("delete/{custId}")
+	public String removeCustomer(@PathVariable("custId") Integer custId, Model model) {
 
-		customerService.removeCustomer(empId);
+		customerService.removeCustomer(custId);
 
-		model.addAttribute("employees", customerService.getAllCustomer());
+		model.addAttribute("customers", customerService.getAllCustomer());
 		return "index";
 	}
 	
-	@PostMapping("update/{empId}")
-	public String updateEmployee(@PathVariable("empId") Integer empId, Customer employee,
+	@PostMapping("update/{custId}")
+	public String updateCustomer(@PathVariable("custId") Integer custId, Customer customer,
 			BindingResult bindingResult, Model model) {
 
-		customerService.updateCustomer(employee);
-		model.addAttribute("employees", customerService.getAllCustomer());
+		customerService.updateCustomer(customer);
+		model.addAttribute("customers", customerService.getAllCustomer());
 		return "index";
 	}
-
 
 }

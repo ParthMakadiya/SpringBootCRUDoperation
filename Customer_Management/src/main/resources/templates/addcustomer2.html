@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Add Employee</title>
+<title>Add Customer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -16,38 +16,62 @@
 </head>
 <body>
 	<div class="container my-5">
-		<h3>Add Employee</h3>
+		<h3>Add Customer</h3>
 		<div class="card">
 			<div class="card-body">
 				<div class="col-md-10">
-					<form action="#" th:action="@{/api/add}" th:object="${employee}" method="post">
+					<form action="#" th:action="@{/api/add}" th:object="${customer}" method="post">
 						<div class="row">
 							<div class="form-group col-md-8">
 								<label for="name" class="col-form-label">Name</label> <input
-									type="text" th:field="*{name}" class="form-control" id="name"
+									type="text" th:field="*{customer_name}" class="form-control" id="name"
 									placeholder="Name"> <span
-									th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+									th:if="${#fields.hasErrors('customer_name')}" th:errors="*{name}"
 									class="text-danger"></span>
 							</div>
 							<div class="form-group col-md-8">
-								<label for="email" class="col-form-label">Email</label> <input
-									type="text" th:field="*{email}" class="form-control" id="email"
-									placeholder="Email"> <span
-									th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+								<label for="ssnid" class="col-form-label">SSNId</label> <input
+									type="text" th:field="*{ssn_id}" class="form-control" id="ssnid"
+									placeholder="ssnid"> <span
+									th:if="${#fields.hasErrors('ssn_id')}" th:errors="*{ssnid}"
 									class="text-danger"></span>
 							</div>
 
 							<div class="form-group col-md-8">
-								<label for="phoneNo" class="col-form-label">Phone No</label> <input
-									type="text" th:field="*{phoneNo}" class="form-control"
-									id="phoneNo" placeholder="PhoneNo"> <span
-									th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}"
+								<label for="age" class="col-form-label">Age</label> <input
+									type="number" th:field="*{age}" class="form-control"
+									id="age" placeholder="age"> <span
+									th:if="${#fields.hasErrors('age')}" th:errors="*{age}"
+									class="text-danger"></span>
+							</div>
+							
+							<div class="form-group col-md-8">
+								<label for="address" class="col-form-label">Address</label> <input
+									type="text" th:field="*{address}" class="form-control"
+									id="address" placeholder="address"> <span
+									th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
+									class="text-danger"></span>
+							</div>
+							
+							<div class="form-group col-md-8">
+								<label for="state" class="col-form-label">State</label> <input
+									type="text" th:field="*{state}" class="form-control"
+									id="state" placeholder="state"> <span
+									th:if="${#fields.hasErrors('state')}" th:errors="*{state}"
+									class="text-danger"></span>
+							</div>
+							
+							<div class="form-group col-md-8">
+								<label for="city" class="col-form-label">City</label> <input
+									type="text" th:field="*{city}" class="form-control"
+									id="city" placeholder="city"> <span
+									th:if="${#fields.hasErrors('city')}" th:errors="*{city}"
 									class="text-danger"></span>
 							</div>
 
 							<div class="col-md-6">
 								<input type="submit" class="btn btn-primary"
-									value="Add Employee">
+									value="Add Customer">
 							</div>
 
 							<div class="form-group col-md-8"></div>
